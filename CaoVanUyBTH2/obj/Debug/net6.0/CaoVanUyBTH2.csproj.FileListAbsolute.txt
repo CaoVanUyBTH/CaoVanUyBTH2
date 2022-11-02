@@ -1,0 +1,8 @@
+D:\code\CaoVanUyBTH2\CaoVanUyBTH2\obj\Debug\net6.0\CaoVanUyBTH2.csproj.AssemblyReference.cache
+D:\code\CaoVanUyBTH2\CaoVanUyBTH2\obj\Debug\net6.0\CaoVanUyBTH2.GeneratedMSBuildEditorConfig.editorconfig
+D:\code\CaoVanUyBTH2\CaoVanUyBTH2\obj\Debug\net6.0\CaoVanUyBTH2.AssemblyInfoInputs.cache
+D:\code\CaoVanUyBTH2\CaoVanUyBTH2\obj\Debug\net6.0\CaoVanUyBTH2.AssemblyInfo.cs
+D:\code\CaoVanUyBTH2\CaoVanUyBTH2\obj\Debug\net6.0\CaoVanUyBTH2.csproj.CoreCompileInputs.cache
+D:\code\CaoVanUyBTH2\CaoVanUyBTH2\obj\Debug\net6.0\CaoVanUyBTH2.MvcApplicationPartsAssemblyInfo.cache
+D:\code\CaoVanUyBTH2\CaoVanUyBTH2\obj\Debug\net6.0\CaoVanUyBTH2.RazorAssemblyInfo.cache
+D:\code\CaoVanUyBTH2\CaoVanUyBTH2\obj\Debug\net6.0\CaoVanUyBTH2.RazorAssemblyInfo.cs

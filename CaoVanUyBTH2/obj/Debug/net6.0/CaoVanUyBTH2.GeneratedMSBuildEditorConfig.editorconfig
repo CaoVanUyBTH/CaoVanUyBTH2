@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = d:\code\CaoVanUyBTH2\CaoVanUyBTH2
 build_property._RazorSourceGeneratorDebug = 
 
+[d:/code/CaoVanUyBTH2/CaoVanUyBTH2/Uploads/Excels/action.cshtml]
+build_metadata.AdditionalFiles.TargetPath = VXBsb2Fkc1xFeGNlbHNcYWN0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [d:/code/CaoVanUyBTH2/CaoVanUyBTH2/Views/Customer/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -45,6 +49,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [d:/code/CaoVanUyBTH2/CaoVanUyBTH2/Views/Employee/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/code/CaoVanUyBTH2/CaoVanUyBTH2/Views/Employee/Upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcVXBsb2FkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [d:/code/CaoVanUyBTH2/CaoVanUyBTH2/Views/Home/Index.cshtml]

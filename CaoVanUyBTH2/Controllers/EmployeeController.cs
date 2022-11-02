@@ -1,13 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CaoVanUyBTH2.Data;
+using CaoVanUyBTH2.Models.Process;
 using CaoVanUyBTH2.Models;
+using CaoVanUyBTH2.Data;
 
 namespace CaoVanUyBTH2.Controllers
 {
     public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private ExcelProcess _excelProcess = new ExcelProcess();
         public EmployeeController (ApplicationDbContext context)
         {
             _context = context;
