@@ -1,7 +1,7 @@
 using CaoVanUyBTH2.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace VuThiHuyenBTH2.Data
+namespace CaoVanUyBTH2.Data
 {
   public class ApplicationDbContext : DbContext
     {
