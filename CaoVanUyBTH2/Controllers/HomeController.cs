@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CaoVanUyBTH2.Models;
 
-namespace CaoVanUyBTH2.Controllers;
+namespace VuThiHuyenBTH2.Controllers;
 
 public class HomeController : Controller
 {
