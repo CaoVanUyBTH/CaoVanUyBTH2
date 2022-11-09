@@ -1,80 +1,113 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CaoVanUyBTH2.Models.Process;
 using CaoVanUyBTH2.Models;
-using CaoVanUyBTH2.Data;
+using CaoVanUyBTH2.Models.Process;
 
 namespace CaoVanUyBTH2.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbcontext _context;
+
         private ExcelProcess _excelProcess = new ExcelProcess();
-        public EmployeeController (ApplicationDbContext context)
+        public EmployeeController(ApplicationDbcontext context)
         {
             _context = context;
         }
 
+        // GET: Employee
         public async Task<IActionResult> Index()
         {
-            var model = await _context.Employees.ToListAsync();
-            return View(model);
+              return _context.Employee != null ? 
+                          View(await _context.Employee.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbcontext.Employee'  is null.");
         }
+
+        // GET: Employee/Details/5
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null || _context.Employee == null)
+            {
+                return NotFound();
+            }
+
+            var employee = await _context.Employee
+                .FirstOrDefaultAsync(m => m.EmpID == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
+        }
+
+        // GET: Employee/Create
         public IActionResult Create()
         {
             return View();
         }
+
+        // POST: Employee/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Create (Employee std)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("EmpID,EmpName,Address")] Employee employee)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                _context.Add(std);
+                _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(std);
-            
-        }
-         //GET: Student/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if(id==null)
-            {
-                //return NotFound
-                return View("NotFound");
-            }
-            //tìm dữ liệu tring database theo id
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee ==null)
-            {
-                return View("NotFound");
-            }
-            //trả về view kèm dữ liệu
             return View(employee);
         }
 
-        //POST: Student/Edit/5
+        // GET: Employee/Edit/5
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (id == null || _context.Employee == null)
+            {
+                return NotFound();
+            }
+
+            var employee = await _context.Employee.FindAsync(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
+        }
+
+        // POST: Employee/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit (string id, [Bind("EmployeeID,EmployeeName,EmployeeAge")] Employee std)
+        public async Task<IActionResult> Edit(string id, [Bind("EmpID,EmpName,Address")] Employee employee)
         {
-            if(id != std.EmployeeID)
+            if (id != employee.EmpID)
             {
-                return View("NotFound");
+                return NotFound();
             }
-            if(ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(std);
+                    _context.Update(employee);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeExists(std.EmployeeID))
+                    if (!EmployeeExists(employee.EmpID))
                     {
-                       return View("NotFound");
+                        return NotFound();
                     }
                     else
                     {
@@ -83,42 +116,90 @@ namespace CaoVanUyBTH2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(std);
+            return View(employee);
         }
 
-        // Get: Product/Delete/5
+        // GET: Employee/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if(id == null)
+            if (id == null || _context.Employee == null)
             {
-                return View("NotFound");
-            }
-            var std =  await _context.Employees
-            .FirstOrDefaultAsync(m => m.EmployeeID == id);
-            if (std == null)
-            {
-                return View("NotFound");
+                return NotFound();
             }
 
-            return View(std);
+            var employee = await _context.Employee
+                .FirstOrDefaultAsync(m => m.EmpID == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
         }
 
-        //POST: Product/Delete/5
-           [HttpPost, ActionName("Delete")]
-           [ValidateAntiForgeryToken]
-
-           public async Task<IActionResult> DeleteConfirmed(string id)
-           {
-            var std = await _context.Employees.FindAsync(id);
-            _context.Employees.Remove(std);
+        // POST: Employee/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.Employee == null)
+            {
+                return Problem("Entity set 'ApplicationDbcontext.Employee'  is null.");
+            }
+            var employee = await _context.Employee.FindAsync(id);
+            if (employee != null)
+            {
+                _context.Employee.Remove(employee);
+            }
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-           } 
+        }
 
         private bool EmployeeExists(string id)
         {
-            return _context.Employees.Any(e => e.EmployeeID == id);
+          return (_context.Employee?.Any(e => e.EmpID == id)).GetValueOrDefault();
         }
-    
+        public async Task<IActionResult> Upload()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file != null)
+            {
+                string fileExtension = Path.GetExtension(file.FileName);
+                if (fileExtension != ".xls" && fileExtension != ".xlsx")
+                {
+                    ModelState.AddModelError("", "Please choose excel file to upload!");
+                }
+                else
+                {
+                    var FileName = DateTime.Now.ToShortTimeString() + fileExtension;
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", FileName);
+                    var fileLocation = new FileInfo(filePath).ToString();
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        //save file to sever
+                        await file.CopyToAsync(stream);
+                        var dt = _excelProcess.ExcelToDataTable(fileLocation);
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            var emp = new Employee();
+
+                            emp.EmpID = dt.Rows[i][0].ToString();
+                            emp.EmpName = dt.Rows[i][1].ToString();
+                            emp.Address = dt.Rows[i][2].ToString();
+
+                            _context.Employee.Add(emp);
+                        }
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            return View();
     }
-}
+    }}

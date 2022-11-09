@@ -2,79 +2,81 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using CaoVanUyBTH2.Data;
 
 #nullable disable
 
 namespace CaoVanUyBTH2.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationDbcontext))]
+    partial class ApplicationDbcontextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
 
-            modelBuilder.Entity("CaovanUyBTH2.Models.Customer", b =>
+            modelBuilder.Entity("CaoVanUyBTH2.Models.Customer", b =>
                 {
-                    b.Property<string>("CustomerID")
+                    b.Property<string>("CusID")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("CustomerAge")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CustomerName")
+                    b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("CustomerID");
+                    b.Property<string>("CusName")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("Customers");
+                    b.HasKey("CusID");
+
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("CaoVanUyBTH2.Models.Employee", b =>
                 {
-                    b.Property<string>("EmployeeID")
+                    b.Property<string>("EmpID")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("EmployeeAge")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("EmployeeName")
+                    b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("EmployeeID");
+                    b.Property<string>("EmpName")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("Employees");
+                    b.HasKey("EmpID");
+
+                    b.ToTable("Employee");
                 });
 
             modelBuilder.Entity("CaoVanUyBTH2.Models.Person", b =>
                 {
-                    b.Property<string>("PersonID")
+                    b.Property<string>("PerID")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PersonAge")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("PersonName")
+                    b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PersonID");
+                    b.Property<string>("PerName")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("Persons");
+                    b.HasKey("PerID");
+
+                    b.ToTable("Person");
                 });
 
-            modelBuilder.Entity("CaovanUyBTH2.Models.Student", b =>
+            modelBuilder.Entity("CaoVanUyBTH2.Models.Student", b =>
                 {
-                    b.Property<string>("StudentID")
+                    b.Property<string>("StdID")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StudentName")
+                    b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("StudentID");
+                    b.Property<string>("StdName")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("Students");
+                    b.HasKey("StdID");
+
+                    b.ToTable("Student");
                 });
 #pragma warning restore 612, 618
         }

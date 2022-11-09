@@ -1,18 +1,22 @@
-using CaoVanUyBTH2.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CaoVanUyBTH2.Models;
 
-namespace CaoVanUyBTH2.Data
-{
-  public class ApplicationDbContext : DbContext
+    public class ApplicationDbcontext : DbContext
     {
-        public ApplicationDbContext (DbContextOptions<ApplicationDbContext>options) : base(options)
+        public ApplicationDbcontext (DbContextOptions<ApplicationDbcontext> options)
+            : base(options)
         {
-
         }
-        public DbSet<Student> Students {get; set;}
-        public DbSet<Employee> Employees {get; set;}
-        public DbSet<Person> Persons {get; set;}
-        public DbSet<Customer> Customers {get; set;}
+
+        public DbSet<CaoVanUyBTH2.Models.Employee> Employee { get; set; } = default!;
+
+        public DbSet<CaoVanUyBTH2.Models.Student>? Student { get; set; }
+
+        public DbSet<CaoVanUyBTH2.Models.Person>? Person { get; set; }
+
+        public DbSet<CaoVanUyBTH2.Models.Customer>? Customer { get; set; }
     }
-    
-}
